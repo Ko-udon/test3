@@ -26,17 +26,17 @@ jobs:
       - name: 서버 배포
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SERVER_HOST }} 
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-	    set -e
+            set -e
             cd /home/ubuntu/test3
-            git pull origin main
+            git pull origin master
 
             echo "SECRET_KEY=\"${{ secrets.SECRET_KEY }}\"" > .env
             echo "DEBUG='${{ secrets.DEBUG }}'" >> .env
 
-            source venv/bin/activate
+            source /home/ubuntu/venv/bin/activate
             pip install -r requirements.txt
             sudo systemctl restart project.service
