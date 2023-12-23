@@ -36,7 +36,13 @@ jobs:
 
             echo "SECRET_KEY=\"${{ secrets.SECRET_KEY }}\"" > .env
             echo "DEBUG='${{ secrets.DEBUG }}'" >> .env
-
+            echo "DATABASES_ENGINE='${{ secrets.DATABASES_ENGINE }}'" >> .env
+            echo "DATABASES_NAME='${{ secrets.DATABASES_NAME }}'" >> .env
+            echo "DATABASES_USER='${{ secrets.DATABASES_USER }}'" >> .env
+            echo "DATABASES_PASSWORD='${{ secrets.DATABASES_PASSWORD }}'" >> .env
+            echo "DATABASES_HOST='${{ secrets.DATABASES_HOST }}'" >> .env
+            echo "DATABASES_PORT='${{ secrets.DATABASES_PORT }}'" >> .env
+            
             source /home/ubuntu/venv/bin/activate
             pip install -r requirements.txt
             sudo systemctl restart project.service
