@@ -2,17 +2,16 @@ from django.shortcuts import render, redirect,get_object_or_404
 from .models import Post
 from django.db.models import Q
 from .forms import PostForm
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
-def blog(request):
-    if request.GET.get('q'):
-        q = request.GET.get('q')
-        db = Post.objects.filter(Q(title__icontains=q) | Q(contents__icontains=q)).distinct()
-    else:
-        db = Post.objects.all()
-    context = {
-        'db': db,
+@api_view(['GET'])
+def random_response(request):
+    # 아무 응답을 원하는 경우, 여기에서 응답을 생성합니다.
+    response_data = {
+        'message': '아무거나 응답합니다!'
     }
-    return render(request, 'blog/blog.html', context)
+    return Response(response_data)
 
 def post(request, pk):
     db = Post.objects.get(pk=pk)
