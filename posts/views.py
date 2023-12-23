@@ -9,7 +9,7 @@ from rest_framework.response import Response
 def random_response(request):
     # 아무 응답을 원하는 경우, 여기에서 응답을 생성합니다.
     response_data = {
-        'message': '아무거나 응답합니다!'
+        'message': '아무거나 응답합니다! 수정완료!'
     }
     return Response(response_data)
 
